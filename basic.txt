@@ -1,0 +1,6 @@
+12 eggs = 1.49
+banana = 0.29
+1/2 grapefruit = 0.99
+4 plums = 2.36
+2 cans blackbeans = 1.78
+1lbs rice = .29
