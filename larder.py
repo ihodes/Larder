@@ -1,7 +1,8 @@
 import sys, getopt, core, parse, shopping
 
-FLAGS = "hf:spd"
-OPTIONS = ["help", "input-file=", "shopping", "debug-on", "print-items"]
+FLAGS = "hf:spdc:"
+OPTIONS = ["help", "input-file=", "shopping", "debug-on", "print-items", \
+               "conversions="]
 
 def main(argv=None):
     print "Larder: -h or --help for information\n"
@@ -19,6 +20,7 @@ def main(argv=None):
     debug = False
     infile = None
     items = None
+    conversions = None
     if len(args)>0: infile=open(args[0])
 
     for o, a in opts:
@@ -36,6 +38,8 @@ def main(argv=None):
             printing = True
         if o in ("-d", "--debug-on"):
             debug = True
+        if o in ("-c", "--conversions"):
+            conversions = open(a)
 
     if infile: items = parse.parse(infile, "norm")
 
@@ -54,6 +58,10 @@ def main(argv=None):
         print "\nDEBUG ON\n"
         print "opts:", opts, " args: ", args
         print items
+
+    if conversions:
+        print "doing that"
+        print parse.parseConversions(conversions)
 
     return 0
 
