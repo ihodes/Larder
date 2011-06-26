@@ -1,0 +1,6 @@
+3 teaspoon = tablespoon
+2 tablespoon = ounce
+8 ounce = cup
+4 cup = pint
+2 pint = quart
+4 quart = gallon
