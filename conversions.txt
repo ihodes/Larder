@@ -1,6 +1,16 @@
+tsp = teaspoon
 3 teaspoon = tablespoon
+t = tablespoon
 2 tablespoon = ounce
+oz = ounce
+ozs = oz
 8 ounce = cup
-4 cup = pint
+2 cup = pint
 2 pint = quart
 4 quart = gallon
+
+g = gram
+28.3495 gram = ounce
+16 ounce = pound
+lb = pound
+lbs = lb
