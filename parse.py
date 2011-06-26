@@ -31,7 +31,7 @@ def tokenizeLineItem(line):
     # see if the item is modified by a unit type
     ti = item.split(" ")[0]
     if ti in core.QUANTITIES: 
-        item = "".join(item.split(" ")[1:])
+        item = " ".join(item.split(" ")[1:])
         unit = ti
 
     return {"item":item, "price":price, "unit":unit, "quantity":quant}
@@ -46,5 +46,9 @@ def parse(infile, parseopts=None):
     """Returns a list of normalized items."""
     items = []
     for line in infile:
-        if len(line)>1: items.append(tokenizeLineItem(line))
+        if len(line)>1:
+            item = tokenizeLineItem(line)
+            if parseopts=="norm": item = normalizeItem(item)
+            items.append(item)
+        
     return items
