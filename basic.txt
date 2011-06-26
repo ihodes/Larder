@@ -2,5 +2,5 @@
 banana = 0.29
 1/2 grapefruit = 0.99
 4 plums = 2.36
-2 cans blackbeans = 1.78
-1lbs rice = .29
+12 oz black beans = 1.78
+1 lbs rice = .29
