@@ -8,3 +8,8 @@ items = [item]
 QUANTITIES = ["lb", "lbs", "pound", "pounds", "oz", "ozs", "ounce", "ounces", \
                   "cup", "cups", "c", "teaspoon", "teaspoons", "tsp", "t",    \
                   "tablespoon", "tablespoons"] 
+
+
+def printItem(item):
+    """A nicer way to print out items"""
+    print "%s: %i %s costs %.2f" % (item["item"], item["quantity"], item["unit"], item["price"])
