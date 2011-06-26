@@ -1,20 +1,22 @@
 import sys, getopt, core, parse, shopping
 
-FLAGS = "hf:s"
-OPTIONS = ["help", "input-file=", "shopping"]
+FLAGS = "hf:spd"
+OPTIONS = ["help", "input-file=", "shopping", "debug-on", "print-items"]
 
 def main(argv=None):
-    print "Larder: -h or --help for information"
+    print "Larder: -h or --help for information\n"
     if argv is None:
         argv = sys.argv
+    if not len(argv)>1:
+        usage()
     try:
         opts, args = getopt.getopt(argv[1:], FLAGS, OPTIONS)
     except Exception: 
-        print "---Incorrect Usage---"
         usage()
-        return 1
-    print "opts:", opts, " args: ", args
 
+    shop = False
+    printing = False
+    debug = False
     if len(args)>0: infile=open(args[0])
 
     for o, a in opts:
@@ -24,24 +26,47 @@ def main(argv=None):
         if o in ("-f", "--input-file"):
             infile = open(a)
         if o in ("-s", "--shopping"):
+            print "Enter your shopping list below [^D when done]"
+            print "(lines should be in the form:  [quantity] [unit] <item>) \n"
             cart = parse.parse(sys.stdin)
+            shop = True
+        if o in ("-p", "--print-items"):
+            printing = True
+        if o in ("-d", "--debug-on"):
+            debug = True
 
-    items = parse.parse(infile)
+    items = parse.parse(infile, "norm")
 
-    print
-    for i in items:
-         core.printItem(i)
+    if shop: 
+        scalc = shopping.calculateCart(cart, items)
+        print "\n\nTotal cost of cart is $%.2f" % scalc[0]
+        if len(scalc[1])>1:
+            print "warnings: %s" % scalc[1]
+        print 
 
+    if printing:
+        for item in items:
+            core.printItem(item)
+        
+    if debug:
+        print "\nDEBUG ON\n"
+        print "opts:", opts, " args: ", args
+        print items
+
+    return 0
 
 def usage():
     print
     print "Usage:"
-    print "\tlarder.py [-sh] [-f] larderfile"
-    print "\tfor now, run: \"python ledger.py ingredientfile.txt\""
+    print "\tlarder.py [-shdp] [-f] larderfile"
     print
     print "Options:"
     print "\t -h, --help \t\t\t\t display this message"
     print "\t -f <file>, --input-file <file> \t parses the ingredients file provided"
+    print "\t -p, --print-items \t\t\t pretty-prints the items from the ingredient file"
+    print "\t -d, --debug-on \t\t\t runs larder in debug mode"
+    print "\t -s, --shopping \t\t\t reads shopping cart from stdin and prints its price"
+    return 0
     
 if __name__ == "__main__":
     sys.exit(main())
