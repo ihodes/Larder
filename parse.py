@@ -67,7 +67,7 @@ def parseConversions(infile, parseopts=None):
            where C is the conversion factor between node_origin and \
            node_dest"""
     graph = []
-    reg = r"(\d+/?\.?\d*)?\s*(\w+)"
+    reg = r"(\d*/?\.?\d+)?\s*(\w+)"
     for line in infile: 
         if len(line)>1:
             splits = line.split("=")
