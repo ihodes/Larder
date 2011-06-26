@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 
-python larder.py $*
+# use this script as a hacky config file
+# add any default args to the command below
 
+python larder.py $*
