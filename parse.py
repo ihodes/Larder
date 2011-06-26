@@ -55,18 +55,19 @@ def parse(infile, parseopts=None):
 
 
 def parseConversions(infile, parseopts=None):
-    """Returns a graph to be used for conversions. Generated from the 
-    infile.
+    """Returns a weighted directed  graph to be used for conversions. \
+    Generated from the infile.
 
     infile must have lines of the form: 
         n unit1 = m unit2
     where n and m are arbitrary rational numbers, or blank (=1).
 
     graph = [edge]
-    edge = (node_origin, node_dest, lambda node_origin: C * x) 
-           where C is the conversion factor between node_origin and node_dest"""
+    edge = (node_origin, node_dest, C)
+           where C is the conversion factor between node_origin and \
+           node_dest"""
     graph = []
-    reg = r"(\d+/?\d*)?\s*(\w+)"
+    reg = r"(\d+/?\.?\d*)?\s*(\w+)"
     for line in infile: 
         if len(line)>1:
             splits = line.split("=")
@@ -75,8 +76,8 @@ def parseConversions(infile, parseopts=None):
             n = m = 1
             if f[0]: n = Fraction(f[0])
             if g[0]: m = Fraction(g[0])
-            graph.append((f[1], g[1], lambda x: Fraction((m/n) * x)))
-            graph.append((g[1], f[1], lambda x: Fraction((n/m) * x)))
+            graph.append((f[1], g[1], m/n))
+            graph.append((g[1], f[1], n/m))
     return graph
     
             
