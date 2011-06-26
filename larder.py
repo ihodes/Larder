@@ -1,9 +1,10 @@
 import sys, getopt, core, parse, shopping
 
-FLAGS = "hf:"
-OPTIONS = ["help", "input-file="]
+FLAGS = "hf:s"
+OPTIONS = ["help", "input-file=", "shopping"]
 
 def main(argv=None):
+    print "Larder: -h or --help for information"
     if argv is None:
         argv = sys.argv
     try:
@@ -12,22 +13,30 @@ def main(argv=None):
         print "---Incorrect Usage---"
         usage()
         return 1
+    print "opts:", opts, " args: ", args
+
+    if len(args)>0: infile=open(args[0])
 
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
             return 1
         if o in ("-f", "--input-file"):
-            larderfile = a
-        else:
-            larderfile=args[0]        
-    if len(opts)==0: larderfile=args[0]
+            infile = open(a)
+        if o in ("-s", "--shopping"):
+            cart = parse.parse(sys.stdin)
 
-    parsed = parse.parse(larderfile)
+    items = parse.parse(infile)
+
+    print
+    for i in items:
+         core.printItem(i)
+
 
 def usage():
     print
     print "Usage:"
+    print "\tlarder.py [-sh] [-f] larderfile"
     print "\tfor now, run: \"python ledger.py ingredientfile.txt\""
     print
     print "Options:"
