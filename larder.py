@@ -17,6 +17,8 @@ def main(argv=None):
     shop = False
     printing = False
     debug = False
+    infile = None
+    items = None
     if len(args)>0: infile=open(args[0])
 
     for o, a in opts:
@@ -35,7 +37,7 @@ def main(argv=None):
         if o in ("-d", "--debug-on"):
             debug = True
 
-    items = parse.parse(infile, "norm")
+    if infile: items = parse.parse(infile, "norm")
 
     if shop: 
         scalc = shopping.calculateCart(cart, items)

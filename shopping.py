@@ -1,11 +1,9 @@
 """
 This module handles the shopping cart.
+
+A cart is a list of items:
+cart = [item]
 """
-# A cart is a list of cartitems that may be purchased. The prices of items are defined by 
-# items_list a result of parse.parse.
-# 
-# cartitem = {"item":itemname "quantity":quantity}
-# cart = [cartitem] 
 
 def get_item(items, item_name):
     """Returns the item in items if it has name=item_name"""
