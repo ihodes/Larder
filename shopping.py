@@ -7,7 +7,7 @@ QUANTITIES = ["lb", "lbs", "pound", "pounds", "oz", "ozs", "ounce", "ounces", \
 # items_list a result of parse.parse.
 # 
 # cartitem = {"item":itemname "quantity":quantity}
-# cart = [cartitem]
+# cart = [cartitem] 
 
 def calculateCart(cart, items_list):
     """Takes items and amounts, compares it against the supplied items_list (from parse.parse)

@@ -1,4 +1,9 @@
-import re
+"""
+This module is used to parse the various input files and store them in 
+the correct internal form.
+"""
+
+import re, core
 from fractions import Fraction
 
 ING_REGEX = r"([0-9]*/?[0-9]*)\s*(.*)"

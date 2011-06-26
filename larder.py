@@ -1,4 +1,4 @@
-import sys, getopt, parse, shopping
+import sys, getopt, core, parse, shopping
 
 FLAGS = "hf:"
 OPTIONS = ["help", "input-file="]
@@ -24,7 +24,6 @@ def main(argv=None):
     if len(opts)==0: larderfile=args[0]
 
     parsed = parse.parse(larderfile)
-    shopping = shop
 
 def usage():
     print
