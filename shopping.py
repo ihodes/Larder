@@ -1,8 +1,6 @@
-# make QUANTITIES a sysem of equalities to make conversion easy & logical
-QUANTITIES = ["lb", "lbs", "pound", "pounds", "oz", "ozs", "ounce", "ounces", \
-                  "cup", "cups", "c", "teaspoon", "teaspoons", "tsp", "t",    \
-                  "tablespoon", "tablespoons"] 
-
+"""
+This module handles the shopping cart.
+"""
 # A cart is a list of cartitems that may be purchased. The prices of items are defined by 
 # items_list a result of parse.parse.
 # 
@@ -14,4 +12,4 @@ def calculateCart(cart, items_list):
     and returns the price of the cart"""
     prices = []
     for item in cart:
-        if item["item"]
+        pass
