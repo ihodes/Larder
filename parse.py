@@ -24,9 +24,9 @@ def tokenizeLineItem(line):
     try: 
         price = Fraction(line[1])
     except: 
-        price = None
+        price = Fraction()
     item = m.group(2)
-    unit = "unit"
+    unit = ""
 
     # see if the item is modified by a unit type
     ti = item.split(" ")[0]
@@ -42,10 +42,9 @@ def normalizeItem(item):
     item["quantity"] = 1
     return item
  
-def parse(larderfile, parseopts=None):
+def parse(infile, parseopts=None):
     """Returns a list of normalized items."""
     items = []
-    for line in open(larderfile):
-        items.append(tokenizeLineItem(line))
-    for item in items:
-        print item
+    for line in infile:
+        if len(line)>1: items.append(tokenizeLineItem(line))
+    return items
