@@ -1,6 +1,9 @@
-12 eggs = 1.49
+dozen eggs = 1.49
 banana = 0.29
 1/2 grapefruit = 0.99
 4 plums = 2.36
 12 oz black beans = 1.78
-1 lbs rice = .29
+1 lb rice = .29
+kiwi = 0.39
+orange = 0.49
+1 lb orzo = 0.99
