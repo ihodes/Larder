@@ -11,25 +11,18 @@ You don't. Unless you're very adventurous and want to add your own code. For now
 
 2. calculate the price of a shopping cart
 
-# TODO
-__unit equalities__
+3. unit conversions built in
 
-*needs to take place across all operations*
-need to improve the unit system, allow for conversion between units
-e.g. 16 oz == 1 lb
-handle plurals: e.g. make oz==ozs
+4. prints rationals for precise numbers
+
+# TODO
 
 __recipes__
 
 maintain a file of recipes 
 can be picked, added to shopping list
 can see price of a recipe
-
-__tags__
-
-e.g. in itemlist [organic, traderjoes]
-then when creating a shopping list you can specify 
-enables homing in on price, etc
+use conversions
 
 __nutritional info__
 
@@ -37,3 +30,10 @@ maintained in larderfile (or another file?)
 automated? (dl from a source?)
 allows you to see info for particular items, or recipes
 need to define syntax for this...
+
+
+__tags__
+
+e.g. in itemlist [organic, traderjoes]
+then when creating a shopping list you can specify 
+enables homing in on price, etc
