@@ -4,6 +4,7 @@ This module handles the shopping cart.
 A cart is a list of items:
 cart = [item]
 """
+import core 
 
 def get_item(items, item_name):
     """Returns the item in items if it has name=item_name"""
@@ -13,21 +14,25 @@ def get_item(items, item_name):
     return None
 
 
-# TODO: take unit type into account (need to do this all over)
-def calculateCart(cart, items):
+# TODO: take unit type into account 
+def calculateCart(cart, items, cgraph=None):
     """Takes items and amounts, compares it against the supplied items (from parse.parse)
-    and returns the total price of the cart"""
+    and returns the total price of the cart.
+    
+    If conversions are supplied, uses them to process cart."""
     price = 0
     warnings = "" # in case something isn't in item_list
     for item in cart:
-        print item
         iname = item["item"]
-        print iname
         iquant = item["quantity"]
+        iunit = item["unit"]
         listi = get_item(items, iname)
         if listi == None:
             warnings += "\n\t%s is not in the item list." % iname
         else:
+            if cgraph and len(iunit)>0: 
+                iquant = core.convertTo(cgraph, iquant, iunit, listi["unit"])
+            if not iquant: raise Exception ("can't convert %s from %s" % (iname,iunit))
             price += (iquant * listi["price"])
     return (price, warnings)
 
