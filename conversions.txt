@@ -15,3 +15,6 @@ g = gram
 ounce = ounces
 lb = pound
 lbs = lb
+
+12 units = dozen
+units = unit
