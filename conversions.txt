@@ -12,5 +12,6 @@ ozs = oz
 g = gram
 28.3495 gram = ounce
 16 ounce = pound
+ounce = ounces
 lb = pound
 lbs = lb
