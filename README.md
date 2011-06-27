@@ -38,6 +38,12 @@ in items, also in conversions
 
 __interactive mode__
 
+__config file__
+
+specify currency unit
+specify input files (defaults)
+specify default options to run with
+
 __support colorized output__
 
 __tags__
