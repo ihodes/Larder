@@ -6,15 +6,6 @@ items = [item]
 """
 from fractions import Fraction
 
-# TODO need to get rid of this, replace it with the generated graph
-# this is used in tokenizeLineItem to capture units
-# soln: add a nodes list to the graph, require a conversions file to be parsed 
-#       before the items are? cons: slow? need a config file to specify
-#       convrsions.txt file, or default to conversions.txt
-QUANTITIES = ["lb", "lbs", "pound", "pounds", "oz", "ozs", "ounce", "ounces", \
-                  "cup", "cups", "c", "teaspoon", "teaspoons", "tsp", "t",    \
-                  "tablespoon", "tablespoons"] 
-
 def traverseWeightedTo(graph, init_weight, in_node, out_node):
     """Returns the the amount multiplied by the weights between in_node
     and out_node.
@@ -46,5 +37,9 @@ def convertTo(graph, amount, in_units, out_units):
 
 def printItem(item):
     """A nicer way to print out items"""
-    print "%s: %i %s costs %.2f" % (item["item"], item["quantity"], \
-                                        item["unit"], item["price"])
+    if len(item["unit"])>0: 
+        print "%s: %i %s costs %.2f" % (item["item"], item["quantity"], \
+                                            item["unit"], item["price"])
+    else: 
+        print "%s: %i costs %.2f" % (item["item"], item["quantity"], \
+                                            item["price"])
