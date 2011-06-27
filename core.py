@@ -38,16 +38,16 @@ def convertTo(graph, amount, in_units, out_units):
 def printItem(item, precise):
     """A nicer way to print out items"""
     if precise: 
-        fmtunit = "%s: %i %s costs %s"
-        fmtnounit = "%s: %i costs %s"
-        price = str(item["price"])
-    else: 
-        fmtunit = "%s: %i %s costs %.2f"
-        fmtnounit = "%s: %i costs %.2f"
+        fmtunit = "%s: %i %s costs $%f"
+        fmtnounit = "%s: %i costs $%f"
         price = item["price"]
-    if len(item["unit"])>0: 
+    else: 
+        fmtunit = "%s: %i %s costs $%.2f"
+        fmtnounit = "%s: %i costs $%.2f"
+        price = item["price"]
+    if item["unit"]!="unit": 
         print fmtunit  % (item["item"], item["quantity"], \
-                                          item["unit"], price)
+                              item["unit"], price)
     else: 
         print fmtnounit  % (item["item"], item["quantity"], \
-                                       price)
+                                price)
