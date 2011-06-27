@@ -30,7 +30,8 @@ def calculateCart(cart, items, cgraph=None):
         if listi == None:
             warnings += "\n\t%s is not in the item list." % iname
         else:
-            if cgraph and len(iunit)>0: 
+            if cgraph and iunit != listi["unit"]: 
+                print "converting", iname, "from", iunit, "to", listi["unit"]
                 iquant = core.convertTo(cgraph, iquant, iunit, listi["unit"])
             if not iquant: raise Exception ("can't convert %s from %s" % (iname,iunit))
             price += (iquant * listi["price"])
