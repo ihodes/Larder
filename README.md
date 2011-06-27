@@ -17,6 +17,7 @@ You don't. Unless you're very adventurous and want to add your own code. For now
 
 # TODO
 
+
 __recipes__
 
 maintain a file of recipes 
@@ -31,6 +32,13 @@ automated? (dl from a source?)
 allows you to see info for particular items, or recipes
 need to define syntax for this...
 
+__support equality over plurals__
+
+in items, also in conversions
+
+__interactive mode__
+
+__support colorized output__
 
 __tags__
 
