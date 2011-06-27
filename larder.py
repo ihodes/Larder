@@ -36,8 +36,6 @@ def main(argv=None):
         if o in ("-f", "--input-file"):
             infile = open(a)
         if o in ("-s", "--shopping"):
-            print "Enter your shopping list below [^D when done]"
-            print "(lines should be in the form:  [quantity] [unit] <item>) \n"
             shop = True
         if o in ("-p", "--print-items"):
             printing = True
@@ -49,13 +47,13 @@ def main(argv=None):
             precise = True
 
     cgraph = parse.parseConversions(conversions)
-    if infile: items = parse.parse(infile, parseopts="norm", units=cgraph[0])
+    items = parse.parse(infile, parseopts="norm", units=cgraph[0])
     if shop: cart = parse.parse(sys.stdin, units=cgraph[0])
 
     if shop: 
         scalc = shopping.calculateCart(cart, items, cgraph)
         if not precise: print "\n\nTotal cost of cart is $%.2f" % scalc[0]
-        else: print "\n\nTotal cost of cart is $s" % str(scalc[0])
+        else: print "\n\nTotal cost of cart is %f" % scalc[0]
         if len(scalc[1])>1:
             print "warnings: %s" % scalc[1]
         print 
@@ -88,7 +86,7 @@ def usage():
     print "\t -d, --debug-on \t\t\t runs larder in debug mode"
     print "\t -s, --shopping \t\t\t reads shopping cart from stdin and prints its price"
     print "\t --conversions <conversionfile>  \t uses <conversionfile> for conversions"
-    print "\t --precise  \t\t\t\t prints prices in rationals"
+    print "\t --precise  \t\t\t\t prints prices in floats"
     
 if __name__ == "__main__":
     sys.exit(main())
