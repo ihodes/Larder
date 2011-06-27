@@ -26,7 +26,7 @@ def tokenizeLineItem(line, units=None):
     except: 
         price = Fraction()
     item = m.group(2)
-    unit = ""
+    unit = "unit"
 
     # see if the item is modified by a unit type
     if units:
@@ -55,7 +55,7 @@ def parse(infile, parseopts=None, units=None):
 
 
 def parseConversions(infile, parseopts=None):
-    """Returns a weighted directed  graph to be used for conversions. 
+    """Returns a weighted directed graph to be used for conversions. 
     Generated from the infile.
 
     infile must have lines of the form: 
@@ -79,6 +79,7 @@ def parseConversions(infile, parseopts=None):
             if f[0]: n = Fraction(f[0])
             if g[0]: m = Fraction(g[0])
             nodes.add(f[1])
+            nodes.add(g[1])
             edges.add((f[1], g[1], m/n))
             edges.add((g[1], f[1], n/m))
     return (nodes, edges)
