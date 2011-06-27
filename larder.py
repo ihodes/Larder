@@ -1,8 +1,8 @@
 import sys, getopt, core, parse, shopping
 
-FLAGS = "hf:spdC"
+FLAGS = "hf:spd"
 OPTIONS = ["help", "input-file=", "shopping", "debug-on", "print-items", \
-               "conversions="]
+               "conversions=", "precise"]
 CONVERSIONS_FILE = "conversions.txt"
 
 def main(argv=None):
@@ -22,6 +22,7 @@ def main(argv=None):
     shop = False
     printing = False
     debug = False
+    precise = False
     infile = None
     items = None
     try: conversions = open(CONVERSIONS_FILE)
@@ -37,7 +38,6 @@ def main(argv=None):
         if o in ("-s", "--shopping"):
             print "Enter your shopping list below [^D when done]"
             print "(lines should be in the form:  [quantity] [unit] <item>) \n"
-            cart = parse.parse(sys.stdin)
             shop = True
         if o in ("-p", "--print-items"):
             printing = True
@@ -45,33 +45,35 @@ def main(argv=None):
             debug = True
         if o in ("--conversions"):
             conversions = open(a)
-        if o == "-C":
-            conversions = None
+        if o == "--precise":
+            precise = True
 
-    if conversions: cgraph = parse.parseConversions(conversions)
+    cgraph = parse.parseConversions(conversions)
     if infile: items = parse.parse(infile, parseopts="norm", units=cgraph[0])
+    if shop: cart = parse.parse(sys.stdin, units=cgraph[0])
 
     if shop: 
-        scalc = shopping.calculateCart(cart, items)
-        print "\n\nTotal cost of cart is $%.2f" % scalc[0]
+        scalc = shopping.calculateCart(cart, items, cgraph)
+        if not precise: print "\n\nTotal cost of cart is $%.2f" % scalc[0]
+        else: print "\n\nTotal cost of cart is $s" % str(scalc[0])
         if len(scalc[1])>1:
             print "warnings: %s" % scalc[1]
         print 
 
     if printing:
         for item in items:
-            core.printItem(item)
+            core.printItem(item, precise)
+
 
     if debug:
         print "\nDEBUG ON"
         print "opts:", opts, " args: ", args
         print "Items:\n", items
-        if conversions:
-            print "\nPrinting conversion graph:"
-            for node in cgraph[0]:
-                print node
-            for edge in cgraph[1]:
-                print edge
+        print "\nPrinting conversion graph:"
+        for node in cgraph[0]:
+            print node
+        for edge in cgraph[1]:
+            print edge
     return 0
 
 def usage():
@@ -85,8 +87,8 @@ def usage():
     print "\t -p, --print-items \t\t\t pretty-prints the items from the ingredient file"
     print "\t -d, --debug-on \t\t\t runs larder in debug mode"
     print "\t -s, --shopping \t\t\t reads shopping cart from stdin and prints its price"
-    print "\t -C  \t\t\t\t\t does not convert units"
     print "\t --conversions <conversionfile>  \t uses <conversionfile> for conversions"
+    print "\t --precise  \t\t\t\t prints prices in rationals"
     
 if __name__ == "__main__":
     sys.exit(main())
