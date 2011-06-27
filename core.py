@@ -35,11 +35,19 @@ def convertTo(graph, amount, in_units, out_units):
     """Returns the number of out_units in amount of in_units."""
     return traverseWeightedTo(graph, amount, in_units, out_units)
 
-def printItem(item):
+def printItem(item, precise):
     """A nicer way to print out items"""
-    if len(item["unit"])>0: 
-        print "%s: %i %s costs %.2f" % (item["item"], item["quantity"], \
-                                            item["unit"], item["price"])
+    if precise: 
+        fmtunit = "%s: %i %s costs %s"
+        fmtnounit = "%s: %i costs %s"
+        price = str(item["price"])
     else: 
-        print "%s: %i costs %.2f" % (item["item"], item["quantity"], \
-                                            item["price"])
+        fmtunit = "%s: %i %s costs %.2f"
+        fmtnounit = "%s: %i costs %.2f"
+        price = item["price"]
+    if len(item["unit"])>0: 
+        print fmtunit  % (item["item"], item["quantity"], \
+                                          item["unit"], price)
+    else: 
+        print fmtnounit  % (item["item"], item["quantity"], \
+                                       price)
