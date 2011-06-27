@@ -62,12 +62,12 @@ def parseConversions(infile, parseopts=None):
         n unit1 = m unit2
     where n and m are arbitrary rational numbers, or blank (=1).
 
-    graph = [[node], [edge]]
+    graph = [set{node}, set{edge}]
     node = String
     edge = (node_origin, node_dest, C)
            where C is the conversion factor between node_origin and 
            node_dest"""
-    edges = []
+    edges = set()
     nodes = set()
     reg = r"(\d*/?\.?\d+)?\s*(\w+)"
     for line in infile: 
@@ -79,8 +79,8 @@ def parseConversions(infile, parseopts=None):
             if f[0]: n = Fraction(f[0])
             if g[0]: m = Fraction(g[0])
             nodes.add(f[1])
-            edges.append((f[1], g[1], m/n))
-            edges.append((g[1], f[1], n/m))
+            edges.add((f[1], g[1], m/n))
+            edges.add((g[1], f[1], n/m))
     return (nodes, edges)
     
             
