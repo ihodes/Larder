@@ -1,0 +1,63 @@
+recipe formats
+
+.yaml
+recipes
+======
+name:
+  notes:
+    comments:
+    rating:
+    from:
+    date: 
+    category:
+    tags:
+    servings: 
+    prep time: 
+    cook time: 
+    total time:
+  pre-prep: (e.g.) over 450º
+  ingredients: 
+    - item: 
+      quantity:
+      unit:
+      comment: 
+  equipment:
+    - name:  
+  directions:
+    - direction: 
+      - subdirection: 
+
+json
+recipes
+=====
+{"recipes":
+{ "name":
+  "notes":
+  "comments:
+  "rating":
+  "from":
+  "date": 
+  "category":
+  "tags":
+  "servings": 
+  "prep time": 
+  "cook time": 
+  "total time":
+  "pre-prep": "(e.g.) over 450º",
+  "ingredients": 
+  {
+     {"item": 
+      "quantity": 
+      "unit": 
+      "comment": },
+  },
+  "equipment": 
+  {
+      {"name":  "something", "comment": "note"},
+  },
+  "directions":
+   {
+     {direction: 
+      subdirection: },
+   },
+}, …}

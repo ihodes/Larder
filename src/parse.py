@@ -62,7 +62,7 @@ def parseConversions(infile, parseopts=None):
         n unit1 = m unit2
     where n and m are arbitrary rational numbers, or blank (=1).
 
-    graph = [set{node}, set{edge}]
+    graph = (set(node), set(edge))
     node = String
     edge = (node_origin, node_dest, C)
            where C is the conversion factor between node_origin and 
