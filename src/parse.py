@@ -2,7 +2,7 @@
 This module is used to parse the various input files and store them in
 the correct internal form.
 """
-import re, core
+import re, core, yaml
 from fractions import Fraction
 
 ING_REGEX = r"([0-9]*/?[0-9]*)\s*(.*)"
@@ -84,4 +84,7 @@ def parseConversions(infile, parseopts=None):
             edges.add((g[1], f[1], n/m))
     return (nodes, edges)
     
-            
+def parseRecipes(infile):
+    """Parses the recipes file (from yaml) into a dictionary."""
+    return yaml.load(infile)
+    
