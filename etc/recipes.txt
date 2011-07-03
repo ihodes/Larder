@@ -1,0 +1,34 @@
+name: Lemon Green Beans
+comments: healthy simple side delicious
+rating: 5
+from: Simple Cooking
+date: 2010-09-22
+category: sides, vegetables
+tags: vegetables, healthy, side, easy, quick
+servings: 4
+prep time: 5min
+cook time: 11min
+total time: 16min
+pre-prep: none
+ingredients:
+  - item: green beans
+    unit: lb
+    comment: fresh and crispy
+  - item: salt
+    unit: teaspoon
+    comment: to taste
+  - item: lemon
+  - item: olive oil
+    quantity: 2
+    unit: tablespoons
+equipment:
+  - name: 1 qt pot
+directions:
+  - direction: bring water to a boil
+    subdirection: add salt
+  - direction:  snap green beans in half  
+    subdirection: make them however small you'd like
+  - direction: when water is boiling, add beans
+    subdirection: they will cook in 8-11 minutes
+  - direction: while cooking, zest lemon (1tbs)
+  - direction: when beans are done, drain, add lemon juice, salt and olive oil to taste
