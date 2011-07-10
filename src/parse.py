@@ -85,6 +85,7 @@ def parseConversions(infile, parseopts=None):
     return (nodes, edges)
     
 def parseRecipes(infile):
-    """Parses the recipes file (from yaml) into a dictionary."""
+    """Parses the recipes file (from yaml) into a dictionary.
+    Requires PyYAML."""
     return yaml.load(infile)
     
